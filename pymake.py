@@ -1,4 +1,5 @@
-# Minimum makefile impl github.com/Myriad-Dreamin/pymake
+import sys
+
 made = set()
 def consume_makefile(method, *arg, **kwarg):
     if callable(method):
@@ -34,3 +35,6 @@ def require(*targets):
             return f(*args, **kwargs)
         return wrapper
     return c
+
+def entry(self):
+    getattr(self, sys.argv[1])(*sys.argv[2:]) if len(sys.argv) > 1 else self.all()
